@@ -6,6 +6,7 @@ const news = [
     title:
       "Mbappé has become a problem for Paris Saint-Germain, and Paris Saint-Germain has become a problem for Mbappé",
     category: { _id: "5b21ca3eeb7f6fbccd471818", name: "Sport" },
+    views: 22,
     date: {
       month: 5,
       day: 22,
@@ -22,6 +23,7 @@ We can already smile at the lesson given by Ibrahimovic when he called out a sit
     title:
       "Team USA doctor Nassar, convicted of sexually assaulting gymnasts, stabbed in prison",
     category: { _id: "5b21ca3eeb7f6fbccd471818", name: "Sport" },
+    views: 34,
     date: {
       month: 6,
       day: 4,
@@ -40,6 +42,7 @@ The disgraced physician was stabbed twice in the neck, six times in the chest an
     title:
       "Superman: Legacy Finds Leads With David Corenswet and Rachel Brosnahan",
     category: { _id: "5b21ca3eeb7f6fbccd471814", name: "Movie" },
+    views: 7,
     date: {
       month: 6,
       day: 27,
@@ -47,7 +50,7 @@ The disgraced physician was stabbed twice in the neck, six times in the chest an
     },
     intro:
       "The duo will star as Clark Kent and Lois Lane in James Gunn's film.",
-    body: `After a lengthy search, David Corenswet and Rachel Brosnahan will star in Superman: Legacy, the film that will launch DC’s new universe under writer-director Gunn and his DC Studios co-boss, Peter Safran.
+    body: `After a lengthy search, David Corenswet and Rachel Brosnahan will star in Superman: Legacy, the film that will launch DC's new universe under writer-director Gunn and his DC Studios co-boss, Peter Safran.
 
 Corenswet and Brosnahan were among six actors who vied for the lead roles, with Gunn filming screen tests over the June 17 weekend with Nicholas Hoult and Tom Brittney also in contention to play Superman/Clark Kent and Emma Mackey and Phoebe Dynevor in the running for Daily Planet reporter Lois Lane.`,
   },
@@ -56,6 +59,7 @@ Corenswet and Brosnahan were among six actors who vied for the lead roles, with 
     title:
       "Tom Holland Recalls Being Enslaved to Alcohol Before Sobriety Journey",
     category: { _id: "5b21ca3eeb7f6fbccd471820", name: "Celebrity" },
+    views: 50,
     date: {
       month: 11,
       day: 2,
@@ -75,6 +79,7 @@ In his experience, the 27-year-old said he would "drink and drink and drink and 
     _id: "5b21ca3eeb7f6fbccd47181a",
     title: "Djokovic celebrates 350th Grand Slam win at Wimbledon",
     category: { _id: "5b21ca3eeb7f6fbccd471818", name: "Sport" },
+    views: 29,
     date: {
       month: 5,
       day: 5,
@@ -102,6 +107,7 @@ The 36-year-old Djokovic is targeting an eighth Wimbledon title, which would dra
     _id: "5b21ca3eeb7f6fbccd47181b",
     title: "See Kylie Jenner React to Results of TikTok's Aging Filter",
     category: { _id: "5b21ca3eeb7f6fbccd471820", name: "Celebrity" },
+    views: 90,
     date: {
       month: 11,
       day: 2,
@@ -116,6 +122,7 @@ The 36-year-old Djokovic is targeting an eighth Wimbledon title, which would dra
     title:
       "Barbie's Simu Liu Reveals What the Kens Did While the Barbies Had Their Epic Sleepover",
     category: { _id: "5b21ca3eeb7f6fbccd471820", name: "Celebrity" },
+    views: 66,
     date: {
       month: 10,
       day: 28,
@@ -133,6 +140,7 @@ And no one took the task quite as seriously as Ryan.
     title:
       "Wembanyama more aggressive in stronger second Summer League game with Spurs in Las Vegas",
     category: { _id: "5b21ca3eeb7f6fbccd471818", name: "Sport" },
+    views: 52,
     date: {
       month: 1,
       day: 12,
@@ -150,6 +158,7 @@ He was 9 of 14 from the floor, 7 of 12 from the line, blocked three shots and le
     _id: "5b21ca3eeb7f6fbccd471821",
     title: "Hugh Jackman Dons Yellow Wolverine Costume in Deadpool 3 Photo",
     category: { _id: "5b21ca3eeb7f6fbccd471814", name: "Movie" },
+    views: 12,
     date: {
       month: 4,
       day: 10,
