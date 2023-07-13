@@ -7,6 +7,13 @@ class News extends Component {
   state = {
     news: getNews(),
   };
+  handleSave = (n) => {
+    const news = [...this.state.news];
+    const index = news.indexOf(n);
+    news[index] = { ...n };
+    news[index].saved = !news[index].saved;
+    this.setState({ news });
+  };
   render() {
     return this.state.news.map((n) => (
       <div
@@ -29,7 +36,7 @@ class News extends Component {
           >
             <span className="badge text-bg-dark">{n.category.name}</span>
             <span className="badge text-bg-dark" style={{ marginLeft: "5px" }}>
-              <i class="fa fa-eye" aria-hidden="true"></i>
+              <i className="fa fa-eye" aria-hidden="true"></i>
               <span style={{ marginLeft: "5px" }}>{n.views}</span>
             </span>
           </div>
@@ -39,15 +46,20 @@ class News extends Component {
           </h6>
           <p className="card-text">{n.intro}</p>
           <div>
-            <a href="#" className="btn btn-primary">
+            <a href="#" className="btn btn-primary btn-sm">
               Read More
             </a>
             <button
-              className="fa fa-bookmark-o btn btn-primary"
+              className={
+                n.saved === false
+                  ? "fa fa-bookmark btn btn-primary btn-sm"
+                  : "fa fa-bookmark-o btn btn-primary btn-sm"
+              }
               aria-hidden="true"
               style={{
                 marginLeft: "10px",
               }}
+              onClick={() => this.handleSave(n)}
             ></button>
           </div>
         </div>
