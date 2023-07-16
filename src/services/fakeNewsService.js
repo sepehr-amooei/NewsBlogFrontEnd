@@ -164,7 +164,6 @@ He was 9 of 14 from the floor, 7 of 12 from the line, blocked three shots and le
       day: 10,
       year: 2023,
     },
-    saved: true,
     intro: "The classic duds have long been joked about in the 'X-Men' films..",
     body: `More than two decades after first playing Wolverine, Hugh Jackman has finally put on the yellow spandex. Jackman and co-star Ryan Reynolds shared a first look at the duo from Deadpool 3 Monday, with the photo including Jackman wearing the classic costume from the comics for the first time.
 

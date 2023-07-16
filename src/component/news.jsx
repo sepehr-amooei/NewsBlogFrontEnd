@@ -14,6 +14,13 @@ class News extends Component {
     news[index].saved = !news[index].saved;
     this.setState({ news });
   };
+  handleClick = (n) => {
+    const news = [...this.state.news];
+    const index = news.indexOf(n);
+    news[index] = { ...n };
+    news[index].views++;
+    this.setState({ news });
+  };
   render() {
     return this.state.news.map((n) => (
       <div
@@ -46,7 +53,11 @@ class News extends Component {
           </h6>
           <p className="card-text">{n.intro}</p>
           <div>
-            <a href="#" className="btn btn-primary btn-sm">
+            <a
+              href="#/"
+              onClick={() => this.handleClick(n)}
+              className="btn btn-primary btn-sm"
+            >
               Read More
             </a>
             <button
