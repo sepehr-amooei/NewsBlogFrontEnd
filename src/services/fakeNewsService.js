@@ -159,6 +159,7 @@ He was 9 of 14 from the floor, 7 of 12 from the line, blocked three shots and le
     title: "Hugh Jackman Dons Yellow Wolverine Costume in Deadpool 3 Photo",
     category: { _id: "5b21ca3eeb7f6fbccd471814", name: "Movie" },
     views: 12,
+    saved: true,
     date: {
       month: 4,
       day: 10,
