@@ -2,10 +2,14 @@ import React, { Component } from "react";
 import { getNews } from "../services/fakeNewsService";
 import blogPicture from "../img/2-1.jpg";
 import Save from "./common/save";
+import Pagination from "./common/pagination";
+import paginate from "../functions/paginate";
 
 class News extends Component {
   state = {
     news: getNews(),
+    pageSize: 3,
+    currentPage: 1,
   };
   handleSave = (n) => {
     const news = [...this.state.news];
@@ -21,13 +25,21 @@ class News extends Component {
     news[index].views++;
     this.setState({ news });
   };
+  handlePageChange = (pageNumber) => {
+    const currentPage = pageNumber;
+    this.setState({ currentPage });
+  };
+
   render() {
+    const { currentPage, pageSize, news: allNews } = this.state;
+    const news = paginate(allNews, currentPage, pageSize);
+
     const { length: count } = this.state.news;
     if (count === 0) return <p>there are no posts in the database</p>;
     return (
       <div style={{ width: "50vw", margin: "20px auto 20px auto" }}>
         <p>Showing {count} posts in the database </p>
-        {this.state.news.map((n) => (
+        {news.map((n) => (
           <div
             className="card"
             style={{ margin: "20px auto 20px auto" }}
@@ -73,6 +85,12 @@ class News extends Component {
             </div>
           </div>
         ))}
+        <Pagination
+          currentPage={currentPage}
+          itemCount={count}
+          pageSize={pageSize}
+          onPageChange={this.handlePageChange}
+        />
       </div>
     );
   }
