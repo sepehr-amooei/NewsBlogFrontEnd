@@ -1,5 +1,5 @@
-import { filter } from "lodash";
 import React from "react";
+import PropTypes from "prop-types";
 
 const DropDown = ({
   dropDownItems,
@@ -43,6 +43,13 @@ const DropDown = ({
 DropDown.defaultProps = {
   textProperty: "name",
   valueProperty: "_id",
+};
+
+DropDown.propTypes = {
+  dropDownItems: PropTypes.array.isRequired,
+  textProperty: PropTypes.string.isRequired,
+  valueProperty: PropTypes.string.isRequired,
+  onSelectItem: PropTypes.func.isRequired,
 };
 
 export default DropDown;
