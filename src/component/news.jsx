@@ -3,12 +3,13 @@ import { getNews } from "../services/fakeNewsService";
 import blogPicture from "../img/2-1.jpg";
 import Save from "./common/save";
 import Pagination from "./common/pagination";
+import Sort from "./sort";
 import paginate from "../functions/paginate";
 
 class News extends Component {
   state = {
     news: getNews(),
-    pageSize: 3,
+    pageSize: 4,
     currentPage: 1,
   };
   handleSave = (n) => {
@@ -37,8 +38,14 @@ class News extends Component {
     const { length: count } = this.state.news;
     if (count === 0) return <p>there are no posts in the database</p>;
     return (
-      <div style={{ width: "50vw", margin: "20px auto 20px auto" }}>
-        <p>Showing {count} posts in the database </p>
+      <div className="center">
+        <div className="parent">
+          <Sort />
+          <div>
+            <p>Showing {count} posts in the database </p>
+          </div>
+        </div>
+
         {news.map((n) => (
           <div
             className="card"
@@ -85,12 +92,22 @@ class News extends Component {
             </div>
           </div>
         ))}
-        <Pagination
-          currentPage={currentPage}
-          itemCount={count}
-          pageSize={pageSize}
-          onPageChange={this.handlePageChange}
-        />
+        <div className="parent">
+          <div
+            style={{
+              position: "absolute",
+              left: "50%",
+              transform: "translate(-50%, 0)",
+            }}
+          >
+            <Pagination
+              currentPage={currentPage}
+              itemCount={count}
+              pageSize={pageSize}
+              onPageChange={this.handlePageChange}
+            />
+          </div>
+        </div>
       </div>
     );
   }
