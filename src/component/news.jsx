@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getNews } from "../services/fakeNewsService";
-import { category, getCategory } from "../services/fakeCategoryService";
+import { getCategory } from "../services/fakeCategoryService";
 import blogPicture from "../img/2-1.jpg";
 import Save from "./common/save";
 import Pagination from "./common/pagination";
@@ -12,11 +12,12 @@ class News extends Component {
   state = {
     news: [],
     categories: [],
-    pageSize: 4,
+    pageSize: 3,
     currentPage: 1,
   };
   componentDidMount() {
-    this.setState({ news: getNews(), categories: getCategory() });
+    const categories = [{ _id: "", name: "All Categories" }, ...getCategory()];
+    this.setState({ news: getNews(), categories });
   }
   handleSave = (n) => {
     const news = [...this.state.news];
@@ -48,7 +49,12 @@ class News extends Component {
       categories,
       selectedCategory,
     } = this.state;
-    const news = paginate(allNews, currentPage, pageSize);
+    const filterd =
+      selectedCategory && selectedCategory._id
+        ? allNews.filter((news) => news.category._id === selectedCategory._id)
+        : allNews;
+    const news = paginate(filterd, currentPage, pageSize);
+    const totalCount = filterd.length;
     const { length: count } = this.state.news;
     if (count === 0) return <p>there are no posts in the database</p>;
     return (
@@ -119,7 +125,7 @@ class News extends Component {
           >
             <Pagination
               currentPage={currentPage}
-              itemCount={count}
+              itemCount={totalCount}
               pageSize={pageSize}
               onPageChange={this.handlePageChange}
             />
