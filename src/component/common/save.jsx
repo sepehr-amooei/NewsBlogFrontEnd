@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Save = ({ saved, onSave }) => {
   let classes = "fa  btn btn-primary btn-sm fa-bookmark";
@@ -13,6 +14,11 @@ const Save = ({ saved, onSave }) => {
       onClick={onSave}
     ></button>
   );
+};
+
+Save.propTypes = {
+  saved: PropTypes.bool,
+  onSave: PropTypes.func.isRequired,
 };
 
 export default Save;
