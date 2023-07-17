@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import { getNews } from "../services/fakeNewsService";
+import { category, getCategory } from "../services/fakeCategoryService";
 import blogPicture from "../img/2-1.jpg";
 import Save from "./common/save";
 import Pagination from "./common/pagination";
+import DropDown from "./common/dropDown";
 import Sort from "./sort";
 import paginate from "../functions/paginate";
 
 class News extends Component {
   state = {
-    news: getNews(),
+    news: [],
+    categories: [],
     pageSize: 4,
     currentPage: 1,
   };
+  componentDidMount() {
+    this.setState({ news: getNews(), categories: getCategory() });
+  }
   handleSave = (n) => {
     const news = [...this.state.news];
     const index = news.indexOf(n);
@@ -30,20 +36,31 @@ class News extends Component {
     const currentPage = pageNumber;
     this.setState({ currentPage });
   };
+  handleCategorySelect = (category) => {
+    this.setState({ selectedCategory: category, currentPage: 1 });
+  };
 
   render() {
-    const { currentPage, pageSize, news: allNews } = this.state;
+    const {
+      currentPage,
+      pageSize,
+      news: allNews,
+      categories,
+      selectedCategory,
+    } = this.state;
     const news = paginate(allNews, currentPage, pageSize);
-
     const { length: count } = this.state.news;
     if (count === 0) return <p>there are no posts in the database</p>;
     return (
       <div className="center">
+        <p>Showing {count} posts in the database </p>
         <div className="parent">
           <Sort />
-          <div>
-            <p>Showing {count} posts in the database </p>
-          </div>
+          <DropDown
+            dropDownItems={categories}
+            selectedItem={selectedCategory}
+            onSelectItem={this.handleCategorySelect}
+          />
         </div>
 
         {news.map((n) => (
