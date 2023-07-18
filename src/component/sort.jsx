@@ -1,11 +1,12 @@
 import React from "react";
 
-const Sort = () => {
+const Sort = ({ onSort }) => {
   return (
     <div className="child-one">
       <button
         type="button"
-        className="btn btn-outline-dark position-relative active"
+        onClick={() => onSort("time")}
+        className="btn btn-outline-dark position-relative "
       >
         <i className="fa fa-sort-amount-desc" aria-hidden="true"></i>
         <span className="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-primary">
@@ -14,6 +15,7 @@ const Sort = () => {
       </button>
       <button
         type="button"
+        onClick={() => onSort("views")}
         className="btn btn-outline-dark position-relative"
         style={{ marginLeft: "2px" }}
       >

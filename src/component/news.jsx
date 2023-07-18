@@ -7,6 +7,7 @@ import Pagination from "./common/pagination";
 import DropDown from "./common/dropDown";
 import Sort from "./sort";
 import paginate from "../functions/paginate";
+import _ from "lodash";
 
 class News extends Component {
   state = {
@@ -14,6 +15,7 @@ class News extends Component {
     categories: [],
     pageSize: 3,
     currentPage: 1,
+    sortOption: { path: "time", order: "desc" },
   };
   componentDidMount() {
     const categories = [{ _id: "", name: "All Categories" }, ...getCategory()];
@@ -40,7 +42,9 @@ class News extends Component {
   handleCategorySelect = (category) => {
     this.setState({ selectedCategory: category, currentPage: 1 });
   };
-
+  handleSort = (path) => {
+    this.setState({ sortOption: { path, order: "desc" }, currentPage: 1 });
+  };
   render() {
     const {
       currentPage,
@@ -48,19 +52,21 @@ class News extends Component {
       news: allNews,
       categories,
       selectedCategory,
+      sortOption,
     } = this.state;
-    const filterd =
+    const filtered =
       selectedCategory && selectedCategory._id
         ? allNews.filter((news) => news.category._id === selectedCategory._id)
         : allNews;
-    const news = paginate(filterd, currentPage, pageSize);
-    const totalCount = filterd.length;
+    const sorted = _.orderBy(filtered, [sortOption.path], [sortOption.order]);
+    const news = paginate(sorted, currentPage, pageSize);
+    const totalCount = filtered.length;
     if (totalCount === 0) return <p>there are no posts in the database</p>;
     return (
       <div className="center">
         <p>Showing {totalCount} posts in the database </p>
         <div className="parent">
-          <Sort />
+          <Sort onSort={this.handleSort} />
           <DropDown
             dropDownItems={categories}
             selectedItem={selectedCategory}
