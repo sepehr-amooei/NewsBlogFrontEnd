@@ -23,10 +23,8 @@ code {
   position: absolute;
   right: 0;
 }
-.content {
+#centerPaginate {
   position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
