@@ -42,8 +42,8 @@ class News extends Component {
   handleCategorySelect = (category) => {
     this.setState({ selectedCategory: category, currentPage: 1 });
   };
-  handleSort = (path) => {
-    this.setState({ sortOption: { path, order: "desc" }, currentPage: 1 });
+  handleSort = (sortOption) => {
+    this.setState({ sortOption, currentPage: 1 });
   };
   render() {
     const {
@@ -66,7 +66,7 @@ class News extends Component {
       <div className="center">
         <p>Showing {totalCount} posts in the database </p>
         <div className="parent">
-          <Sort onSort={this.handleSort} />
+          <Sort onSort={this.handleSort} sortOption={sortOption} />
           <DropDown
             dropDownItems={categories}
             selectedItem={selectedCategory}
