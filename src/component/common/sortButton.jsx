@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class SortButton extends Component {
   render() {
     const { sortOption, sortItems, onRaiseSort } = this.props;
     return sortItems.map((item) => (
       <button
+        key={item.path}
         style={{ marginLeft: "15px" }}
         type="button"
         onClick={() => onRaiseSort(item.path)}
@@ -29,5 +31,11 @@ class SortButton extends Component {
     ));
   }
 }
+
+SortButton.propTypes = {
+  sortOption: PropTypes.object.isRequired,
+  sortItems: PropTypes.array.isRequired,
+  onRaiseSort: PropTypes.func.isRequired,
+};
 
 export default SortButton;
