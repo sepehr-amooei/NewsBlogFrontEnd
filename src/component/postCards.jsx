@@ -1,5 +1,6 @@
 import React from "react";
 import Save from "./common/save";
+import { Link } from "react-router-dom";
 
 const PostCards = ({ news, blogPicture, formatDate, onClick, onSave }) => {
   return news.map((n) => (
@@ -29,13 +30,13 @@ const PostCards = ({ news, blogPicture, formatDate, onClick, onSave }) => {
         </h6>
         <p className="card-text">{n.intro}</p>
         <div>
-          <a
-            href="#/"
+          <Link
+            to={`/posts/${n._id}`}
             onClick={() => onClick(n)}
             className="btn btn-primary btn-sm"
           >
             Read More
-          </a>
+          </Link>
           <Save saved={n.saved} onSave={() => onSave(n)} />
         </div>
       </div>
