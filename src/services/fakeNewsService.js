@@ -7,6 +7,7 @@ const news = [
       "Mbappé has become a problem for Paris Saint-Germain, and Paris Saint-Germain has become a problem for Mbappé",
     category: { _id: "5b21ca3eeb7f6fbccd471818", name: "Sport" },
     views: 22,
+    saved: true,
     date: {
       month: 5,
       day: 22,
@@ -45,6 +46,7 @@ The disgraced physician was stabbed twice in the neck, six times in the chest an
       "Superman: Legacy Finds Leads With David Corenswet and Rachel Brosnahan",
     category: { _id: "5b21ca3eeb7f6fbccd471814", name: "Movie" },
     views: 7,
+    saved: true,
     date: {
       month: 6,
       day: 27,
@@ -148,6 +150,7 @@ And no one took the task quite as seriously as Ryan.
       "Wembanyama more aggressive in stronger second Summer League game with Spurs in Las Vegas",
     category: { _id: "5b21ca3eeb7f6fbccd471818", name: "Sport" },
     views: 52,
+    saved: true,
     date: {
       month: 1,
       day: 12,

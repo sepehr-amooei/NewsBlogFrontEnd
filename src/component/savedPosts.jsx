@@ -1,6 +1,7 @@
 import React from "react";
-import { getNews } from "../services/fakeNewsService";
+import News from "./news";
 import { useLoaderData } from "react-router-dom";
+import { getNews } from "../services/fakeNewsService";
 
 export async function loader() {
   const savedPosts = await getNews();
@@ -9,12 +10,7 @@ export async function loader() {
 
 const SavedPosts = () => {
   const savedPosts = useLoaderData();
-  console.log(savedPosts);
-  return (
-    <div className="center">
-      <h1>saved posts</h1>
-    </div>
-  );
+  return <News posts={savedPosts} />;
 };
 
 export default SavedPosts;

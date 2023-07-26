@@ -8,7 +8,7 @@ import ErrorPage from "./component/common/errorPage";
 import NavBar from "./component/common/navbar";
 import PostDetails from "./component/postDetails";
 import SavedPosts, { loader as savedPostsLoader } from "./component/savedPosts";
-// import { loader as postsLoader } from "./component/news";
+import Home, { loader as postsLoader } from "./component/home";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +26,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/posts",
-        element: <News />,
-        // loader: postsLoader,
+        element: <Home />,
+        loader: postsLoader,
       },
       {
         path: "/saved-posts",

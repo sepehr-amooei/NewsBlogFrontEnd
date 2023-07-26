@@ -19,7 +19,7 @@ class News extends Component {
   };
   componentDidMount() {
     const categories = [{ _id: "", name: "All Categories" }, ...getCategory()];
-    this.setState({ news: getNews(), categories });
+    this.setState({ news: this.props.posts, categories });
   }
   handleSave = (n) => {
     const news = [...this.state.news];
