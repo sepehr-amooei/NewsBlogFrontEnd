@@ -33,6 +33,7 @@ class News extends Component {
     const index = news.indexOf(n);
     news[index] = { ...news[index] };
     news[index].views++;
+    console.log(news[index].views++);
     this.setState({ news });
   };
   handlePageChange = (pageNumber) => {

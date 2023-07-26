@@ -5,7 +5,7 @@ const PostDetails = () => {
   let params = useParams();
   let history = useNavigate();
   return (
-    <div>
+    <div className="center">
       <h1>Post details{params.id}</h1>
       <button className="btn btn-primary" onClick={() => history("/posts")}>
         Save
