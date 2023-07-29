@@ -3,12 +3,12 @@ import {
   RouterProvider,
   Navigate,
 } from "react-router-dom";
-import News from "./component/news";
 import ErrorPage from "./component/common/errorPage";
 import NavBar from "./component/common/navbar";
 import PostDetails from "./component/postDetails";
 import SavedPosts, { loader as savedPostsLoader } from "./component/savedPosts";
 import Home, { loader as postsLoader } from "./component/home";
+import { loader as postDetailsLoader } from "./component/postDetails";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +23,7 @@ const router = createBrowserRouter([
       {
         path: "/posts/:id",
         element: <PostDetails />,
+        loader: postDetailsLoader,
       },
       {
         path: "/posts",

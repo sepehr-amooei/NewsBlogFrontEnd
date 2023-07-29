@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { getNews } from "../services/fakeNewsService";
 import { getCategory } from "../services/fakeCategoryService";
 import blogPicture from "../img/2-1.jpg";
 import PostCards from "./postCards";
@@ -33,7 +32,6 @@ class News extends Component {
     const index = news.indexOf(n);
     news[index] = { ...news[index] };
     news[index].views++;
-    console.log(news[index].views++);
     this.setState({ news });
   };
   handlePageChange = (pageNumber) => {
@@ -78,13 +76,13 @@ class News extends Component {
     return (
       <div className="center">
         <div
-          class="alert alert-success alert-dismissible fade show"
+          className="alert alert-success alert-dismissible fade show"
           role="alert"
         >
           Showing {totalCount} posts in the database
           <button
             type="button"
-            class="btn-close"
+            className="btn-close"
             data-bs-dismiss="alert"
             aria-label="Close"
           ></button>
