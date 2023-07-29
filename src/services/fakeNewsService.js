@@ -188,9 +188,9 @@ export function getNews() {
   return news;
 }
 
-// export function getNews(id) {
-//   return news.find((n) => n._id === id);
-// }
+export function getNewsById(id) {
+  return news.find((n) => n._id === id);
+}
 
 export function saveNews(news) {
   let newsInDb = news.find((n) => n._id === news._id) || {};

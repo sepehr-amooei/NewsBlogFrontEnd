@@ -62,10 +62,33 @@ class News extends Component {
     const sorted = _.orderBy(filtered, [sortOption.path], [sortOption.order]);
     const news = paginate(sorted, currentPage, pageSize);
     const totalCount = filtered.length;
-    if (totalCount === 0) return <p>there are no posts in the database</p>;
+    if (totalCount === 0)
+      return (
+        <div className="center">
+          <div className="alert alert-danger" role="alert">
+            there are no posts in the database
+          </div>
+          <DropDown
+            dropDownItems={categories}
+            selectedItem={selectedCategory}
+            onSelectItem={this.handleCategorySelect}
+          />
+        </div>
+      );
     return (
       <div className="center">
-        <p>Showing {totalCount} posts in the database </p>
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          Showing {totalCount} posts in the database
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
         <div className="parent">
           <Sort onSort={this.handleSort} sortOption={sortOption} />
           <DropDown
