@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form } from "react-router-dom";
+import Input from "./input";
 
 class LoginForm extends Component {
   state = {
@@ -17,33 +18,18 @@ class LoginForm extends Component {
       <div className="center">
         <h1>Login</h1>
         <Form>
-          <div className="mb-3">
-            <label htmlFor="username" className="form-label">
-              Username
-            </label>
-            <input
-              value={account.username}
-              name="username"
-              onChange={this.handleChange}
-              autoFocus
-              id="username"
-              type="text"
-              className="form-control"
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <input
-              value={account.password}
-              name="password"
-              onChange={this.handleChange}
-              id="password"
-              type="text"
-              className="form-control"
-            />
-          </div>
+          <Input
+            name="username"
+            label="Username"
+            value={this.username}
+            onChange={this.handleChange}
+          />
+          <Input
+            name="password"
+            label="Password"
+            value={this.password}
+            onChange={this.handleChange}
+          />
           <button type="submit" className="btn btn-primary">
             Login
           </button>
