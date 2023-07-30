@@ -6,6 +6,7 @@ import {
 import ErrorPage from "./component/common/errorPage";
 import NavBar from "./component/common/navbar";
 import PostDetails from "./component/postDetails";
+import LoginForm from "./component/common/loginForm";
 import SavedPosts, { loader as savedPostsLoader } from "./component/savedPosts";
 import Home, { loader as postsLoader } from "./component/home";
 import { loader as postDetailsLoader } from "./component/postDetails";
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Navigate to="/posts" />,
+      },
+      {
+        path: "/login",
+        element: <LoginForm />,
       },
       {
         path: "/posts/:id",
