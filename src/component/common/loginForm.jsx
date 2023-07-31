@@ -1,10 +1,33 @@
 import React, { Component } from "react";
 import { Form } from "react-router-dom";
 import Input from "./input";
+import { object } from "prop-types";
 
 class LoginForm extends Component {
   state = {
     account: { username: "", password: "" },
+    errors: {},
+  };
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    const errors = this.validate();
+    this.setState({ errors });
+    console.log(errors);
+    if (errors) return;
+    //call the server
+    console.log("submitted");
+  };
+  validate = () => {
+    const errors = {};
+    const { account } = this.state;
+
+    if (account.username.trim() === "")
+      errors.username = "Username is required.";
+    if (account.password.trim() === "")
+      errors.password = "Password is required.";
+
+    return Object.keys(errors).length === 0 ? null : errors;
   };
   handleChange = ({ currentTarget: input }) => {
     const account = { ...this.state.account };
@@ -17,17 +40,17 @@ class LoginForm extends Component {
     return (
       <div className="center">
         <h1>Login</h1>
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
           <Input
             name="username"
             label="Username"
-            value={this.username}
+            value={account.username}
             onChange={this.handleChange}
           />
           <Input
             name="password"
             label="Password"
-            value={this.password}
+            value={account.password}
             onChange={this.handleChange}
           />
           <button type="submit" className="btn btn-primary">
