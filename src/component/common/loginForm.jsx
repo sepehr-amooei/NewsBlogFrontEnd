@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import { Form } from "react-router-dom";
+import Joi from "joi-browser";
 import Input from "./input";
-import { object } from "prop-types";
 
 class LoginForm extends Component {
   state = {
     account: { username: "", password: "" },
     errors: {},
   };
+
+  schema = {
+    username: Joi.string().required().label("Username"),
+    password: Joi.string().required().label("Password"),
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -17,17 +23,20 @@ class LoginForm extends Component {
     //call the server
     console.log("submitted");
   };
+
   validate = () => {
+    const options = {
+      abortEarly: false,
+    };
+    const { error } = Joi.validate(this.state.account, this.schema, options);
+
+    if (!error) return null;
+
     const errors = {};
-    const { account } = this.state;
-
-    if (account.username.trim() === "")
-      errors.username = "Username is required.";
-    if (account.password.trim() === "")
-      errors.password = "Password is required.";
-
-    return Object.keys(errors).length === 0 ? null : errors;
+    for (const item of error.details) errors[item.path[0]] = item.message;
+    return errors;
   };
+
   handleChange = ({ currentTarget: input }) => {
     const errors = { ...this.state.errors };
     const errorMessage = this.validateProperty(input);
@@ -38,6 +47,7 @@ class LoginForm extends Component {
     account[input.name] = input.value;
     this.setState({ account, errors });
   };
+
   validateProperty = ({ name, value }) => {
     if (name === "username") {
       if (value.trim() === "") return "Username is required!";

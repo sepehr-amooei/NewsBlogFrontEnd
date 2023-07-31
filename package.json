@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.0",
     "font-awesome": "^4.7.0",
+    "joi-browser": "^13.4.0",
     "lodash": "^4.17.21",
     "popper.js": "^1.16.1",
     "prop-types": "^15.6.2",
