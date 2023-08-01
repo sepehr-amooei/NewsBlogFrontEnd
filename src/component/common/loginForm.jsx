@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form } from "react-router-dom";
 import Joi from "joi-browser";
-import Input from "./input";
+
 import FormComponent from "./form";
 
 class LoginForm extends FormComponent {
@@ -21,32 +21,13 @@ class LoginForm extends FormComponent {
   };
 
   render() {
-    const { data, errors } = this.state;
     return (
       <div className="center">
         <h1>Login</h1>
         <Form onSubmit={this.handleSubmit}>
-          <Input
-            name="username"
-            label="Username"
-            value={data.username}
-            error={errors.username}
-            onChange={this.handleChange}
-          />
-          <Input
-            name="password"
-            label="Password"
-            value={data.password}
-            error={errors.password}
-            onChange={this.handleChange}
-          />
-          <button
-            disabled={this.validate()}
-            type="submit"
-            className="btn btn-primary"
-          >
-            Login
-          </button>
+          {this.renderInput("username", "Username")}
+          {this.renderInput("password", "Password", "password")}
+          {this.renderButton("Login")}
         </Form>
       </div>
     );
