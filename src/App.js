@@ -7,6 +7,7 @@ import ErrorPage from "./component/common/errorPage";
 import NavBar from "./component/common/navbar";
 import PostDetails from "./component/postDetails";
 import LoginForm from "./component/common/loginForm";
+import RegisterForm from "./component/common/registerForm";
 import SavedPosts, { loader as savedPostsLoader } from "./component/savedPosts";
 import Home, { loader as postsLoader } from "./component/home";
 import { loader as postDetailsLoader } from "./component/postDetails";
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginForm />,
+      },
+      {
+        path: "/register",
+        element: <RegisterForm />,
       },
       {
         path: "/posts/:id",
