@@ -9,7 +9,7 @@ const DropDown = ({
   onSelectItem,
 }) => {
   return (
-    <div>
+    <div id="searchbox">
       <button
         className="btn btn-dark dropdown-toggle"
         type="button"

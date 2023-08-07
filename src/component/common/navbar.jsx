@@ -17,7 +17,7 @@ const NavBar = () => {
               height="26"
               className="d-inline-block align-text-center"
             />
-            Blog
+            News Blog
           </Link>
           <button
             className="navbar-toggler"

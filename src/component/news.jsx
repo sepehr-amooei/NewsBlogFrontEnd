@@ -7,6 +7,8 @@ import DropDown from "./common/dropDown";
 import Sort from "./sort";
 import paginate from "../functions/paginate";
 import _ from "lodash";
+import SearchBox from "./common/searchBox";
+import SortButton from "./common/sortButton";
 
 class News extends Component {
   state = {
@@ -14,6 +16,7 @@ class News extends Component {
     categories: [],
     pageSize: 3,
     currentPage: 1,
+    searchQuery: "",
     sortOption: { path: "time", order: "desc" },
   };
   componentDidMount() {
@@ -44,12 +47,14 @@ class News extends Component {
   handleSort = (sortOption) => {
     this.setState({ sortOption, currentPage: 1 });
   };
-  render() {
+  handleSearch = (query) => {
+    this.setState({ searchQuery: query, selectedGenre: null, currentPage: 1 });
+  };
+  getPageData = () => {
     const {
       currentPage,
       pageSize,
       news: allNews,
-      categories,
       selectedCategory,
       sortOption,
     } = this.state;
@@ -60,6 +65,18 @@ class News extends Component {
     const sorted = _.orderBy(filtered, [sortOption.path], [sortOption.order]);
     const news = paginate(sorted, currentPage, pageSize);
     const totalCount = filtered.length;
+    return { data: news, totalCount };
+  };
+  render() {
+    const {
+      currentPage,
+      pageSize,
+      categories,
+      selectedCategory,
+      sortOption,
+      searchQuery,
+    } = this.state;
+    const { totalCount, data: news } = this.getPageData();
     if (totalCount === 0)
       return (
         <div className="center">
@@ -87,13 +104,18 @@ class News extends Component {
             aria-label="Close"
           ></button>
         </div>
-        <div className="parent">
-          <Sort onSort={this.handleSort} sortOption={sortOption} />
+        <div className="header">
           <DropDown
+            id="filterbox"
             dropDownItems={categories}
             selectedItem={selectedCategory}
             onSelectItem={this.handleCategorySelect}
           />
+          <SearchBox value={searchQuery} onChange={this.handleSearch} />
+          <buttom className="btn btn-primary" id="newbtn">
+            New
+          </buttom>
+          <Sort onSort={this.handleSort} sortOption={sortOption} />
         </div>
         <PostCards
           news={news}

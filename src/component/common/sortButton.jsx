@@ -7,13 +7,13 @@ class SortButton extends Component {
     return sortItems.map((item) => (
       <button
         key={item.path}
-        style={{ marginLeft: "15px" }}
+        style={{}}
         type="button"
         onClick={() => onRaiseSort(item.path)}
         className={
           sortOption.path === item.path
-            ? "btn btn-outline-dark position-relative active"
-            : "btn btn-outline-dark position-relative"
+            ? "sortbtn btn btn-outline-dark position-relative active"
+            : "sortbtn btn btn-outline-dark position-relative"
         }
       >
         <i

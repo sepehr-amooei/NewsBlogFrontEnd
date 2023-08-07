@@ -19,7 +19,7 @@ class Sort extends Component {
   render() {
     const { sortOption } = this.props;
     return (
-      <div className="child-one">
+      <div id="sortbox">
         <SortButton
           sortOption={sortOption}
           sortItems={this.sortItems}
