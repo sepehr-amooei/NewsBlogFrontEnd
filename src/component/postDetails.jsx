@@ -14,28 +14,32 @@ const PostDetails = () => {
   const post = useLoaderData();
   console.log(post);
   return (
-    <div style={{ width: "80vw", margin: "20px auto 20px auto" }}>
-      <h3>{post.title}</h3>
-      <p
-        class="text-body-secondary"
-        style={{ display: "block", marginBottom: "20px" }}
-      >
-        Release Date: {formatDate(post.date)}
-      </p>
+    <div className="postContainer">
+      <div className="postTitle">
+        <h3>{post.title}</h3>
+        <p
+          className="text-body-secondary"
+          style={{ display: "block", marginBottom: "20px" }}
+        >
+          Release Date: {formatDate(post.date)}
+        </p>
+      </div>
       <img
         src={post.image || blogPicture}
         alt=""
         style={{ display: "block", margin: "20px auto" }}
+        className="postImg img-fluid"
       />
-      <h6>{post.intro}</h6>
-      <p>{post.body}</p>
-
-      <button
-        className="btn btn-primary mg-3"
-        onClick={() => history("/posts")}
-      >
-        Save
-      </button>
+      <h6 className="postIntro">{post.intro}</h6>
+      <div className="postBody">
+        <p>{post.body}</p>
+        <button
+          className="btn btn-primary mg-3"
+          onClick={() => history("/posts")}
+        >
+          Edit
+        </button>
+      </div>
     </div>
   );
 };

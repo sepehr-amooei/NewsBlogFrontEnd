@@ -116,9 +116,9 @@ class News extends Component {
             onChange={this.handleSearch}
             id="searchBox"
           />
-          <buttom className="btn btn-primary" id="newBtn">
+          <button className="btn btn-primary" id="newBtn">
             New Post
-          </buttom>
+          </button>
           <Sort onSort={this.handleSort} sortOption={sortOption} id="sortBox" />
         </div>
         <PostCards

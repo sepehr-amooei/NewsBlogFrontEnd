@@ -60,6 +60,30 @@ code {
   margin-right: 10px;
   z-index: 1;
 }
+.postContainer {
+  width: 80vw;
+  margin: 20px auto 20px auto;
+  display: grid;
+  grid-template-areas: "title  title" "intro  image" "body  body";
+  grid-template-columns: 1fr 2fr;
+  gap: 10px 10px;
+}
+.postTitle {
+  grid-area: title;
+}
+.postIntro {
+  grid-area: intro;
+  text-align: center;
+  justify-self: center;
+}
+.postImg {
+  grid-area: image;
+  align-self: center;
+  justify-self: center;
+}
+.postBody {
+  grid-area: body;
+}
 @media only screen and (max-width: 900px) {
   .center {
     width: 75vw;
