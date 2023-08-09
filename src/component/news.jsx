@@ -106,16 +106,20 @@ class News extends Component {
         </div>
         <div className="header">
           <DropDown
-            id="filterbox"
+            id="filterBox"
             dropDownItems={categories}
             selectedItem={selectedCategory}
             onSelectItem={this.handleCategorySelect}
           />
-          <SearchBox value={searchQuery} onChange={this.handleSearch} />
-          <buttom className="btn btn-primary" id="newbtn">
-            New
+          <SearchBox
+            value={searchQuery}
+            onChange={this.handleSearch}
+            id="searchBox"
+          />
+          <buttom className="btn btn-primary" id="newBtn">
+            New Post
           </buttom>
-          <Sort onSort={this.handleSort} sortOption={sortOption} />
+          <Sort onSort={this.handleSort} sortOption={sortOption} id="sortBox" />
         </div>
         <PostCards
           news={news}

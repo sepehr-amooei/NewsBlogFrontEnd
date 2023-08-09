@@ -17,9 +17,9 @@ class Sort extends Component {
     { path: "views", icon: "fa fa-eye" },
   ];
   render() {
-    const { sortOption } = this.props;
+    const { sortOption, id } = this.props;
     return (
-      <div id="sortbox">
+      <div id={id}>
         <SortButton
           sortOption={sortOption}
           sortItems={this.sortItems}

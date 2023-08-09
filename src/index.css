@@ -42,12 +42,16 @@ code {
   font-family: sans-serif;
   font-size: 16px;
   display: grid;
-  grid-template-columns: 1.25fr 4fr 1fr 1.5fr;
+  grid-template-columns: 75px 1fr 110px 100px;
 }
-#filterbox,
-#searchbox,
-#newbtn,
-#sortbox {
+#filterBox {
+  justify-self: start;
+}
+#sortBox {
+  justify-self: end;
+}
+#searchBox,
+#newBtn {
   color: aliceblue;
   justify-self: center;
   align-self: center;
@@ -56,13 +60,38 @@ code {
   margin-right: 10px;
   z-index: 1;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
   .center {
     width: 75vw;
   }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 690px) {
   .center {
     width: 90vw;
+  }
+  .header {
+    font-family: sans-serif;
+    font-size: 16px;
+    display: grid;
+    grid-template-areas:
+      "filter sort sort"
+      "search search new";
+    grid-template-columns: 1fr 1fr 100px;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px 2px;
+  }
+  #filterBox {
+    grid-area: filter;
+    justify-self: start;
+  }
+  #searchBox {
+    grid-area: search;
+  }
+  #newBtn {
+    grid-area: new;
+  }
+  #sortBox {
+    grid-area: sort;
+    justify-self: end;
   }
 }

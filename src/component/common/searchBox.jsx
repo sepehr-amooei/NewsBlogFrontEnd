@@ -1,8 +1,9 @@
 import React from "react";
 
-const SearchBox = ({ value, onChange }) => {
+const SearchBox = ({ value, onChange, id }) => {
   return (
     <input
+      id={id}
       type="text"
       name="query"
       placeholder="Search..."

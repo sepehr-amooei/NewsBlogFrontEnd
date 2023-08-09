@@ -7,9 +7,10 @@ const DropDown = ({
   textProperty,
   valueProperty,
   onSelectItem,
+  id,
 }) => {
   return (
-    <div id="searchbox">
+    <div id={id}>
       <button
         className="btn btn-dark dropdown-toggle"
         type="button"
