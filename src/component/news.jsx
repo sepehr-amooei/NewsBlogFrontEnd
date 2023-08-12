@@ -9,6 +9,7 @@ import paginate from "../functions/paginate";
 import _ from "lodash";
 import SearchBox from "./common/searchBox";
 import SortButton from "./common/sortButton";
+import { Link } from "react-router-dom";
 
 class News extends Component {
   state = {
@@ -116,9 +117,9 @@ class News extends Component {
             onChange={this.handleSearch}
             id="searchBox"
           />
-          <button className="btn btn-primary" id="newBtn">
+          <Link to={"/posts/edit/new"} className="btn btn-primary" id="newBtn">
             New Post
-          </button>
+          </Link>
           <Sort onSort={this.handleSort} sortOption={sortOption} id="sortBox" />
         </div>
         <PostCards

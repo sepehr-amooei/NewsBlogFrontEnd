@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import FormComponent from "./form";
 import Joi from "joi-browser";
 import { Form } from "react-router-dom";

@@ -1,4 +1,5 @@
 import * as genresAPI from "./fakeCategoryService";
+import dayjs from "dayjs";
 
 const news = [
   {
@@ -13,7 +14,7 @@ const news = [
       day: 22,
       year: 2023,
     },
-    time: 1267,
+    time: 1691830908733,
     intro:
       "The poker game has resumed between the star football player and his club. So far, it's been a losing game, writes Jérôme Latta in his column.",
     body: `"He made the right choice for PSG, not for himself." This was the opinion given by Zlatan Ibrahimovic in November 2022 on Canal+, a few months after Kylian Mbappé decided to extend his contract in Paris by two years plus an optional third year.
@@ -31,7 +32,7 @@ We can already smile at the lesson given by Ibrahimovic when he called out a sit
       day: 4,
       year: 2023,
     },
-    time: 1279,
+    time: 1691830908734,
     intro:
       "The disgraced physician, who was found guilty of assaulting hundreds of athletes, was stabbed twice in the neck, six times in the chest and twice in the back, according to a prison official.",
     body: `Larry Nassar, the former USA Gymnastics team doctor convicted of sexually assaulting hundreds of athletes, was in stable condition on Monday, July 10, after being stabbed multiple times by another inmate, a prison union official said.
@@ -52,7 +53,7 @@ The disgraced physician was stabbed twice in the neck, six times in the chest an
       day: 27,
       year: 2023,
     },
-    time: 1302,
+    time: 1691830908739,
     intro:
       "The duo will star as Clark Kent and Lois Lane in James Gunn's film.",
     body: `After a lengthy search, David Corenswet and Rachel Brosnahan will star in Superman: Legacy, the film that will launch DC's new universe under writer-director Gunn and his DC Studios co-boss, Peter Safran.
@@ -70,7 +71,7 @@ Corenswet and Brosnahan were among six actors who vied for the lead roles, with 
       day: 2,
       year: 2022,
     },
-    time: 1062,
+    time: 1691830908727,
     intro:
       "Tom Holland said he was definitely addicted to alcohol before he got sober, noting how he couldn't get through social events without having a",
     body: `he Spider-Man actor, who has been sober for over a year, recently looked back at the extent of his alcohol consumption, noting that it had a detrimental impact on his day-to-day life.
@@ -91,7 +92,7 @@ In his experience, the 27-year-old said he would "drink and drink and drink and 
       day: 5,
       year: 2023,
     },
-    time: 1250,
+    time: 1691830908731,
     intro:
       "Roger Federer (369) and Serena Williams (365), both of whom retired last year, are the only players with more Grand Slam singles wins than Djokovic.",
     body: `You can share an article by clicking on the share icons at the top right of it. 
@@ -120,7 +121,7 @@ The 36-year-old Djokovic is targeting an eighth Wimbledon title, which would dra
       day: 2,
       year: 2022,
     },
-    time: 1062,
+    time: 1691830908728,
     intro:
       "Kylie Jenner is keeping up with the TikTok filters and recently applied one to see what she could look like in the future.",
     body: `""It's really such a blessing that I've been able to live and experience so much life at such a young age," the mom to daughter Stormi Webster, 5, and son Aire Webster, 17 months, told HommeGirls earlier this year. "I have two kids, I'm 25. Honestly. I've never been happier. As I get older, I get more appreciative of my life, my family, my friends and having all these opportunities."`,
@@ -136,7 +137,7 @@ The 36-year-old Djokovic is targeting an eighth Wimbledon title, which would dra
       day: 28,
       year: 2022,
     },
-    time: 1058,
+    time: 1691830908726,
     intro: "Gym is life for the Ken dolls.",
     body: `"So, while the Barbies were having a nice, relaxing night," the actor continued, referencing the fun-filled sleepover the female cast members like Margot Robbie and America Ferrera got to enjoy, "the Kens were lifting things and flexing."
 
@@ -156,7 +157,7 @@ And no one took the task quite as seriously as Ryan.
       day: 12,
       year: 2023,
     },
-    time: 1137,
+    time: 1691830908729,
     intro:
       "The No. 1 pick in this year's draft looked much more like himself in his second game of Summer League on Sunday. He finished with 27 points and 12 rebounds, but the Spurs lost 85-80 to the Portland Trail Blazers.",
     body: `Victor Wembanyama was yelling in celebration, punching the air and even got a Band-Aid on his right cheek because of some physicality. For his second act in Las Vegas, Wembanyama showed some fire.
@@ -176,7 +177,7 @@ He was 9 of 14 from the floor, 7 of 12 from the line, blocked three shots and le
       day: 10,
       year: 2023,
     },
-    time: 1225,
+    time: 1691830908730,
     intro: "The classic duds have long been joked about in the 'X-Men' films..",
     body: `More than two decades after first playing Wolverine, Hugh Jackman has finally put on the yellow spandex. Jackman and co-star Ryan Reynolds shared a first look at the duo from Deadpool 3 Monday, with the photo including Jackman wearing the classic costume from the comics for the first time.
 
@@ -194,13 +195,22 @@ export function getNewsById(id) {
 
 export function saveNews(news) {
   let newsInDb = news.find((n) => n._id === news._id) || {};
-  newsInDb.title = news.title;
-  newsInDb.category = genresAPI.category.find((n) => n._id === news.genreId);
-  newsInDb.date.year = news.date.year;
-  newsInDb.date.month = news.date.month;
-  newsInDb.date.day = news.date.day;
-  newsInDb.intro = news.intro;
-
+  if (newsInDb) {
+    newsInDb.title = news.title;
+    newsInDb.intro = news.intro;
+    newsInDb.body = news.body;
+    newsInDb.category = genresAPI.category.find((n) => n._id === news.genreId);
+  } else {
+    newsInDb.title = news.title;
+    newsInDb.intro = news.intro;
+    newsInDb.body = news.body;
+    newsInDb.category = genresAPI.category.find((n) => n._id === news.genreId);
+    newsInDb.views = 0;
+    newsInDb.date.year = dayjs().year();
+    newsInDb.date.month = dayjs().month() + 1;
+    newsInDb.date.day = dayjs().date();
+    newsInDb.time = Date.now();
+  }
   if (!newsInDb._id) {
     newsInDb._id = Date.now();
     news.push(newsInDb);

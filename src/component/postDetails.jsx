@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate, useLoaderData } from "react-router-dom";
+import { useParams, useNavigate, useLoaderData, Link } from "react-router-dom";
 import { getNewsById } from "../services/fakeNewsService";
 import blogPicture from "../img/2-1.jpg";
 
@@ -12,7 +12,6 @@ const PostDetails = () => {
   let params = useParams();
   let history = useNavigate();
   const post = useLoaderData();
-  console.log(post);
   return (
     <div className="postContainer">
       <div className="postTitle">
@@ -33,12 +32,9 @@ const PostDetails = () => {
       <h6 className="postIntro">{post.intro}</h6>
       <div className="postBody">
         <p>{post.body}</p>
-        <button
-          className="btn btn-primary mg-3"
-          onClick={() => history("/posts")}
-        >
+        <Link className="btn btn-primary mg-3" to={`/posts/edit/${params.id}`}>
           Edit
-        </button>
+        </Link>
       </div>
     </div>
   );

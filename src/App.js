@@ -8,6 +8,7 @@ import NavBar from "./component/common/navbar";
 import PostDetails from "./component/postDetails";
 import LoginForm from "./component/common/loginForm";
 import RegisterForm from "./component/common/registerForm";
+import PostForm from "./component/postForm";
 import SavedPosts, { loader as savedPostsLoader } from "./component/savedPosts";
 import Home, { loader as postsLoader } from "./component/home";
 import { loader as postDetailsLoader } from "./component/postDetails";
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         path: "/posts/:id",
         element: <PostDetails />,
         loader: postDetailsLoader,
+      },
+      {
+        path: "/posts/edit/:id",
+        element: <PostForm />,
       },
       {
         path: "/posts",
