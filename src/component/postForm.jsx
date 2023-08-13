@@ -1,26 +1,47 @@
 import React from "react";
 import Joi from "joi-browser";
 import FormComponent from "./common/form";
-import { Form } from "react-router-dom";
+import { Form, useNavigate, useParams } from "react-router-dom";
 import { getCategory } from "../services/fakeCategoryService";
+import { getNewsById, saveNews } from "./../services/fakeNewsService";
 
 class PostForm extends FormComponent {
   state = {
-    data: { title: "", body: "", intro: "", categoryId: "" },
+    data: { title: "", categoryId: "", body: "", intro: "" },
     categories: [],
     errors: {},
   };
-
   schema = {
+    _id: Joi.string(),
+    title: Joi.string().required().label("Title"),
+    categoryId: Joi.string().required().label("Category"),
     intro: Joi.string().required().label("Intro"),
+    body: Joi.string().required().label("Body"),
   };
   componentDidMount() {
+    const { params, navigate } = this.props;
     const categories = getCategory();
     this.setState({ categories });
+
+    if (params.id === "new") return;
+
+    const post = getNewsById(params.id);
+    if (!post) return navigate("/not-found", { replace: true });
+
+    this.setState({ data: this.mapToViewModel(post) });
+  }
+  mapToViewModel(post) {
+    return {
+      _id: post._id,
+      title: post.title,
+      categoryId: post.category._id,
+      intro: post.intro,
+      body: post.body,
+    };
   }
   doSubmit = () => {
-    //call the server
-    console.log("submitted");
+    saveNews(this.state.data);
+    this.props.navigate("/posts");
   };
 
   render() {
@@ -39,4 +60,9 @@ class PostForm extends FormComponent {
   }
 }
 
+export function PostFormWithRouter(props) {
+  const navigate = useNavigate();
+  const params = useParams();
+  return <PostForm navigate={navigate} params={params}></PostForm>;
+}
 export default PostForm;

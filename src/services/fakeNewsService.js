@@ -193,30 +193,34 @@ export function getNewsById(id) {
   return news.find((n) => n._id === id);
 }
 
-export function saveNews(news) {
-  let newsInDb = news.find((n) => n._id === news._id) || {};
-  if (newsInDb) {
-    newsInDb.title = news.title;
-    newsInDb.category = genresAPI.category.find((n) => n._id === news.genreId);
-    newsInDb.intro = news.intro;
-    newsInDb.body = news.body;
+export function saveNews(post) {
+  let postInDb = news.find((n) => n._id === post._id) || {};
+  if (post._id) {
+    postInDb.title = post.title;
+    postInDb.category = genresAPI.category.find(
+      (n) => n._id === post.categoryId
+    );
+    postInDb.intro = post.intro;
+    postInDb.body = post.body;
   } else {
-    newsInDb.title = news.title;
-    newsInDb.category = genresAPI.category.find((n) => n._id === news.genreId);
-    newsInDb.intro = news.intro;
-    newsInDb.body = news.body;
-    newsInDb.views = 0;
-    newsInDb.date.year = dayjs().year();
-    newsInDb.date.month = dayjs().month() + 1;
-    newsInDb.date.day = dayjs().date();
-    newsInDb.time = Date.now();
+    postInDb.title = post.title;
+    postInDb.category = genresAPI.category.find(
+      (n) => n._id === post.categoryId
+    );
+    postInDb.intro = post.intro;
+    postInDb.body = post.body;
+    postInDb.views = 0;
+    postInDb.date = {};
+    postInDb.date.year = dayjs().year();
+    postInDb.date.month = dayjs().month() + 1;
+    postInDb.date.day = dayjs().date();
+    postInDb.time = Date.now();
   }
-  if (!newsInDb._id) {
-    newsInDb._id = Date.now().toString();
-    news.push(newsInDb);
+  if (!postInDb._id) {
+    postInDb._id = Date.now().toString();
+    news.push(postInDb);
   }
-
-  return newsInDb;
+  return postInDb;
 }
 
 export function deleteMovie(id) {

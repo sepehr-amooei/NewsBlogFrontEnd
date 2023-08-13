@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate, useLoaderData, Link } from "react-router-dom";
+import { useParams, useLoaderData, Link } from "react-router-dom";
 import { getNewsById } from "../services/fakeNewsService";
 import blogPicture from "../img/2-1.jpg";
 
@@ -10,7 +10,6 @@ export async function loader({ params }) {
 
 const PostDetails = () => {
   let params = useParams();
-  let history = useNavigate();
   const post = useLoaderData();
   return (
     <div className="postContainer">
