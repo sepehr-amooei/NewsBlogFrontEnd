@@ -42,7 +42,7 @@ code {
   font-family: sans-serif;
   font-size: 16px;
   display: grid;
-  grid-template-columns: 75px 1fr 110px 100px;
+  grid-template-columns: 0.25fr 1fr 110px 100px;
 }
 #filterBox {
   justify-self: start;
@@ -52,7 +52,6 @@ code {
 }
 #searchBox,
 #newBtn {
-  color: aliceblue;
   justify-self: center;
   align-self: center;
 }

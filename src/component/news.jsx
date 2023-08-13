@@ -18,6 +18,7 @@ class News extends Component {
     pageSize: 3,
     currentPage: 1,
     searchQuery: "",
+    selectedCategory: null,
     sortOption: { path: "time", order: "desc" },
   };
   componentDidMount() {
@@ -43,7 +44,11 @@ class News extends Component {
     this.setState({ currentPage });
   };
   handleCategorySelect = (category) => {
-    this.setState({ selectedCategory: category, currentPage: 1 });
+    this.setState({
+      selectedCategory: category,
+      searchQuery: "",
+      currentPage: 1,
+    });
   };
   handleSort = (sortOption) => {
     this.setState({ sortOption, currentPage: 1 });
@@ -58,11 +63,17 @@ class News extends Component {
       news: allNews,
       selectedCategory,
       sortOption,
+      searchQuery,
     } = this.state;
-    const filtered =
-      selectedCategory && selectedCategory._id
-        ? allNews.filter((news) => news.category._id === selectedCategory._id)
-        : allNews;
+    let filtered = allNews;
+    if (searchQuery)
+      filtered = allNews.filter((post) =>
+        post.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    else if (selectedCategory && selectedCategory._id)
+      filtered = allNews.filter(
+        (post) => post.category._id === selectedCategory._id
+      );
     const sorted = _.orderBy(filtered, [sortOption.path], [sortOption.order]);
     const news = paginate(sorted, currentPage, pageSize);
     const totalCount = filtered.length;
@@ -84,11 +95,27 @@ class News extends Component {
           <div className="alert alert-danger" role="alert">
             there are no posts in the database
           </div>
-          <DropDown
-            dropDownItems={categories}
-            selectedItem={selectedCategory}
-            onSelectItem={this.handleCategorySelect}
-          />
+          <div className="header">
+            <DropDown
+              id="filterBox"
+              dropDownItems={categories}
+              selectedItem={selectedCategory}
+              onSelectItem={this.handleCategorySelect}
+            />
+            <SearchBox
+              value={searchQuery}
+              onChange={this.handleSearch}
+              id="searchBox"
+            />
+            <Link to={"/postform/new"} className="btn btn-primary" id="newBtn">
+              New Post
+            </Link>
+            <Sort
+              onSort={this.handleSort}
+              sortOption={sortOption}
+              id="sortBox"
+            />
+          </div>
         </div>
       );
     return (
