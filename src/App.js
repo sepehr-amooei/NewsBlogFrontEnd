@@ -32,13 +32,13 @@ const router = createBrowserRouter([
         element: <RegisterForm />,
       },
       {
+        path: "/postform/:id",
+        element: <PostForm />,
+      },
+      {
         path: "/posts/:id",
         element: <PostDetails />,
         loader: postDetailsLoader,
-      },
-      {
-        path: "/posts/edit/:id",
-        element: <PostForm />,
       },
       {
         path: "/posts",

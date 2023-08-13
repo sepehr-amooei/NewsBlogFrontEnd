@@ -22,7 +22,7 @@ class RegisterForm extends FormComponent {
 
   render() {
     return (
-      <div className="center">
+      <div className="center ">
         <h1>Login</h1>
         <Form onSubmit={this.handleSubmit}>
           {this.renderInput("username", "Username", "email")}

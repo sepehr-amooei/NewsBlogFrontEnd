@@ -197,14 +197,14 @@ export function saveNews(news) {
   let newsInDb = news.find((n) => n._id === news._id) || {};
   if (newsInDb) {
     newsInDb.title = news.title;
+    newsInDb.category = genresAPI.category.find((n) => n._id === news.genreId);
     newsInDb.intro = news.intro;
     newsInDb.body = news.body;
-    newsInDb.category = genresAPI.category.find((n) => n._id === news.genreId);
   } else {
     newsInDb.title = news.title;
+    newsInDb.category = genresAPI.category.find((n) => n._id === news.genreId);
     newsInDb.intro = news.intro;
     newsInDb.body = news.body;
-    newsInDb.category = genresAPI.category.find((n) => n._id === news.genreId);
     newsInDb.views = 0;
     newsInDb.date.year = dayjs().year();
     newsInDb.date.month = dayjs().month() + 1;
@@ -212,7 +212,7 @@ export function saveNews(news) {
     newsInDb.time = Date.now();
   }
   if (!newsInDb._id) {
-    newsInDb._id = Date.now();
+    newsInDb._id = Date.now().toString();
     news.push(newsInDb);
   }
 

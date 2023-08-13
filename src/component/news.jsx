@@ -117,7 +117,7 @@ class News extends Component {
             onChange={this.handleSearch}
             id="searchBox"
           />
-          <Link to={"/posts/edit/new"} className="btn btn-primary" id="newBtn">
+          <Link to={"/postform/new"} className="btn btn-primary" id="newBtn">
             New Post
           </Link>
           <Sort onSort={this.handleSort} sortOption={sortOption} id="sortBox" />

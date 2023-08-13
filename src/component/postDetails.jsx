@@ -32,7 +32,7 @@ const PostDetails = () => {
       <h6 className="postIntro">{post.intro}</h6>
       <div className="postBody">
         <p>{post.body}</p>
-        <Link className="btn btn-primary mg-3" to={`/posts/edit/${params.id}`}>
+        <Link className="btn btn-primary mg-3" to={`/postform/${params.id}`}>
           Edit
         </Link>
       </div>
