@@ -43,3 +43,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         return data
     
 
+class UserUpdateSerializer(serializers.ModelSerializer):
+    
+
+    class Meta:
+        model = User
+        fields = "__all__"
+    
+    
