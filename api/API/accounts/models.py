@@ -11,7 +11,8 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
-    REQUIRED_FIELDS = ["email", "username"]
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
     
     objects = UserManager()
 
