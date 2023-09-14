@@ -5,38 +5,51 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.pagination import LimitOffsetPagination
+from rest_framework import filters
 
 
 class NewsReview(APIView, LimitOffsetPagination):
     '''
     list of news.
     '''
-    permission_classes = [IsAuthenticated,]
+    #permission_classes = [IsAuthenticated,]
     serializer_class = NewsSerializer
     
     def get(self, request):
+        def custom_response(self, request, news):
+            self.count = self.get_count(news)
+            results = self.paginate_queryset(news, request, view=self)
+            srz_data = NewsSerializer(instance=results, many=True)
+            return self.get_paginated_response(srz_data.data)
+        search = self.request.query_params.get("search", "")
         sort_by = self.request.query_params.get('sort', '')
         category = self.request.query_params.get("category", None)
-        if category:
-            if sort_by:
-                news = News.objects.filter(category=category).order_by(sort_by)
+        if search:
+            if category:
+                if sort_by:
+                    news = News.objects.filter(category=category, title__contains=search).order_by(sort_by)
+                else:
+                    news = News.objects.filter(category=category, title__contains=search)
+                return custom_response(self, request, news)
             else:
-                news = News.objects.filter(category=category)
-            self.count = self.get_count(news)
-            results = self.paginate_queryset(news, request, view=self)
-            self.count = self.get_count(news)
-            srz_data = NewsSerializer(instance=results, many=True)
-            return self.get_paginated_response(srz_data.data)
+                if sort_by:
+                    news = News.objects.filter(title__contains=search).order_by(sort_by)
+                else:
+                    news = News.objects.filter(title__contains=search)
+                return custom_response(self, request, news)
         else:
-            if sort_by:
-                news = News.objects.all().order_by(sort_by)
+            if category:
+                if sort_by:
+                    news = News.objects.filter(category=category).order_by(sort_by)
+                else:
+                    news = News.objects.filter(category=category)
+                return custom_response(self, request, news)
             else:
-                news = News.objects.all()
-            self.count = self.get_count(news)
-            results = self.paginate_queryset(news, request, view=self)
-            srz_data = NewsSerializer(instance=results, many=True)
-            return self.get_paginated_response(srz_data.data)
-
+                if sort_by:
+                    news = News.objects.all().order_by(sort_by)
+                else:
+                    news = News.objects.all()
+                return custom_response(self, request, news)
 
 
 class NewsUpdate(APIView):
