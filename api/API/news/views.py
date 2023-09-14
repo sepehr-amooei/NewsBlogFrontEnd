@@ -11,7 +11,7 @@ class NewsReview(APIView, LimitOffsetPagination):
     '''
     list of news.
     '''
-    #permission_classes = [IsAuthenticated,]
+    permission_classes = [IsAuthenticated,]
     serializer_class = NewsSerializer
     
     def get(self, request):
