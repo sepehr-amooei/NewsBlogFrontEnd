@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'accounts.apps.AccountsConfig',
-    'news.apps.NewsConfig'
+    'news.apps.NewsConfig',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +133,13 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'PAGE_SIZE': 10,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 AUTH_USER_MODEL = 'accounts.User'
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'NEWSBLOG API',
+    'DESCRIPTION': 'restful api for newsblog',
+    'VERSION': '1.0.0',
+}
